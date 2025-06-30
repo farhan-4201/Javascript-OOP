@@ -67,10 +67,13 @@ class CurrentAccount extends BankAccount{
 
 class Bank{
     static totalAccounts = 0;
+    constructor(){
+        this.account=[];
+    }
     addAccount(account){
-    this.account=account;
-    totalAccounts++;
-    return `${account} created successfully`;
+    this.account.push(account);
+    Bank.totalAccounts++;
+    console.log(`this account ${account} created`)
     }
 
     getAccount(accountNumber){
@@ -78,7 +81,7 @@ class Bank{
    }
 
     listAllAccounts(){
-    console.log(`Accounts So far :${totalAccounts}` )
+    console.log(`Accounts So far :${Bank.totalAccounts}` )
    }
 }
 
@@ -88,10 +91,12 @@ const myBank = new Bank();
 // Create accounts
 const savings = new SavingsAccount(101, "Farhan", 10000, 0.05);
 const current = new CurrentAccount(102, "Usman", 2000, 3000);
+const saving = new SavingsAccount(103,"Ali",500,15);
 
 // Add accounts to bank
 myBank.addAccount(savings);
 myBank.addAccount(current);
+myBank.addAccount(saving);
 
 // Savings Account actions
 savings.deposit(5000);       // 15000
